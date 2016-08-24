@@ -2,7 +2,7 @@ FROM alpine:3.4
 
 ENV OPENRESTY_VERSION 1.9.15.1
 ENV LUAROCKS_VERSION 2.3.0
-ENV LUA_AUTO_SSL_VERSION 0.8.6
+ENV LUA_AUTO_SSL_VERSION 0.8.6-1
 ENV OPENRESTY_PREFIX /opt/openresty
 ENV NGINX_PREFIX /opt/openresty/nginx
 ENV VAR_PREFIX /var/nginx
@@ -59,7 +59,7 @@ RUN echo "--- Installing dependencies ---" \
   && make install \
   && ln -sf ${OPENRESTY_PREFIX}/luajit/bin/luarocks /usr/local/bin/luarocks \
   && echo "--- Installing lua-resty-auto-ssl module ---" \
-  && luarocks install lua-resty-auto-ssl=${LUA_AUTO_SSL_VERSION} \
+  && luarocks install lua-resty-auto-ssl ${LUA_AUTO_SSL_VERSION} \
   && echo "--- Configuring lua-resty-auto-ssl ---" \
   && mkdir -p /etc/resty-auto-ssl \
   && openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 \
